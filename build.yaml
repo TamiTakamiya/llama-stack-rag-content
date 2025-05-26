@@ -1,9 +1,0 @@
-version: '2'
-distribution_spec:
-  description: Minimum setting for document ingestion
-  providers:
-    inference:
-    - inline::sentence-transformers
-    vector_io:
-    - inline::faiss
-image_type: venv

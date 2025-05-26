@@ -4,10 +4,10 @@
 
 ```commandline
 git clone git@github.com:TamiTakamiya/llama-stack-rag-content.git
-uv init -p 3.11 llama-stack-rag-content
 python3.11 -m venv .venv
-uv pip install llama-stack
-
+source .venv/bin/activate
+llama stack build --template remote-vllm --image-type venv --image-name .venv
+SQLITE_STORE_DIR=./db python3.11 ./main.py
 ```
 
 ## References
