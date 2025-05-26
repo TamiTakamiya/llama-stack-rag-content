@@ -2,6 +2,7 @@ version: '2'
 image_name: remote-vllm
 apis:
 - inference
+- tool_runtime
 - vector_io
 providers:
   inference:
@@ -16,13 +17,17 @@ providers:
         type: sqlite
         namespace: null
         db_path: ${env.SQLITE_STORE_DIR:~/.llama/distributions/remote-vllm}/faiss_store.db
-metadata_store:
-  type: sqlite
-  db_path: ${env.SQLITE_STORE_DIR:~/.llama/distributions/remote-vllm}/registry.db
+  tool_runtime:
+  - provider_id: rag-runtime
+    provider_type: inline::rag-runtime
+    config: {}
 models:
 - metadata:
     embedding_dimension: 384
   model_id: all-MiniLM-L6-v2
   provider_id: sentence-transformers
   model_type: embedding
+tool_groups:
+- toolgroup_id: builtin::rag
+  provider_id: rag-runtime
 vector_dbs: []
